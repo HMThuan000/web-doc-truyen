@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "~/Views/Shared/QuanLyLayout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #CCCCCC;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #content {
+        min-height: 400px; /*chiều cao tối thiểu là 400px*/
+    }
+
+        #content td, #content th {
+            padding: 8px;
+        }
+</style>
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Danh sách truyện
+        </h1>
+        <form action="~/QuanLy/AddComic" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>Tên truyện: <input type="text" name="tentruyen" /></td>
+                </tr>
+                <tr>
+                    <td>Mô tả:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="mota" rows="6" cols="100" style="resize: none"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hình minh họa: <input type="file" name="hinhminhhoa" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        Tác giả:
+                        <select name="matg">
+                            @foreach (var a in ViewBag.listTG)
+                            {
+                                <option value="@a[0]">@a[1]</option>
+                            }
+                        </select>  @*<input type="text" name="matg" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Thêm truyện" /></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Main row -->
+        <div class="row">
+            <div id="content">
+                <table border="1" style="width: 100%;">
+                    <tr style="padding: 8px; background-color: #04AA6D; color: white;">
+                        <th style="padding: 8px;">ID</th>
+                        <th>Tên truyện</th>
+                        <th>Tác giả</th>
+                        <th>Mô tả</th>
+                        <th>Ảnh bìa</th>
+                        <th>Số chương</th>
+                        <th>Ngày cập nhật truyện</th>
+                        <th>Lượt đánh giá</th>
+                        <th>Lượt theo dõi</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var a in ViewBag.list)
+                    {
+                        <tr>
+                            <td>@a[0]</td>
+                            <td>@a[1]</td>
+                            <td>@a[9]</td>
+                            <td>@a[2]</td>
+                            <td><img src="~/img/@a[3]" style="width: 50%;" /></td>
+                            <td>@a[10]</td>
+                            <td>@a[5]</td>
+                            <td>@a[6]</td>
+                            <td>@a[7]</td>
+                            <td>
+                                <a href="~/QuanLy/QuanLyTruyenChiTiet?id=@a[0]">Chi tiết</a>
+                                <a href="~/QuanLy/RemoveComic?id=@a[0]" onclick="return confirmDelete()">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div><!-- /.row (main row) -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

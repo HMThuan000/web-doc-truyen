@@ -1,0 +1,124 @@
+﻿@{ 
+    System.Collections.ArrayList b = ((System.Collections.ArrayList)Session["taikhoan"]);
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/css/StyleSheet1.css" />
+    <script src="https://kit.fontawesome.com/ee288d8d4e.js" crossorigin="anonymous"></script>
+    <title>Doc Truyen</title>
+    <style>
+        /* CSS cho dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #2980b9;
+        }
+
+    </style>
+
+    <script>
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdownContent");
+            dropdownContent.classList.toggle("show");
+        }
+
+        function logout() {
+            // Xóa thông tin đăng nhập khỏi session
+            Session["taikhoan"] = null;
+            // Chuyển hướng đến trang đăng nhập
+            window.location.href = "~/Home/LoginPage";
+        }
+
+        // Đóng dropdown khi click ra ngoài
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <header class="header-main">
+        <div class="container-header-main">
+            <a href="~/Home/Index" class="mylogo">DOCTRUYEN</a>
+            <div class="form-search-header">
+                <form action="~/Home/FindComic">
+                    <input type="text" id="fname" name="comicname" placeholder="Tìm kiếm truyện bạn muốn xem" />
+                </form>
+            </div>
+            <nav class="navbar-main">
+                <a href="#">Sắp xếp</a>
+                <a href="#">Thể loại</a>
+                @if (Session["taikhoan"] != null)
+                {
+                    <div class="dropdown">
+                        <a href="#">
+                            Xin chào, @b[1]!<!-- Hiển thị tên người dùng -->
+                        </a>
+                        <div id="dropdownContent" class="dropdown-content">
+                            <a href="#"><i class="fa-solid fa-gear"></i>Cài đặt</a>
+                            <a href="~/Home/Logout" onclick="logout()"><i class="fa-solid fa-door-open"></i>Đăng xuất</a>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <a href="~/Home/LoginPage"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Đăng nhập</a>
+                }
+            </nav>
+        </div>
+        <div class="introduce-comic">
+            <div class="">
+
+            </div>
+        </div>
+    </header>
+    <div class="container-new-comic">
+        @RenderBody()
+    </div>
+    <div class="container body-content">
+        <hr />
+        <footer style="text-align: center;">
+            <p>&copy; @DateTime.Now.Year - DocTruyen</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .section {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        padding: 90px 30px;
+        background-color: rgba(25, 26, 28, 1);
+        height: 500px;
+        color: white;
+    }
+
+    h2{
+        font-size: 3em;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    p {
+        line-height: 1.625em;
+        margin: 0 auto;
+        max-width: 480px;
+        text-align: justify;
+    }
+
+    .comic-details {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: -300px;
+        text-align: center;
+    }
+</style>
+
+<section class="section">
+    <div class="comic-details">
+        <img src="~/img/@ViewBag.list[0][3]"/>
+        <h2>@ViewBag.list[0][1]</h2>
+        <p style="font-weight: 700; font-size: 20px;"><a href="#">Tác giả - @ViewBag.list[0][10]</a></p>
+        <p>@ViewBag.list[0][2]</p>
+        <hr style="width: 50%; margin-top: 30px;"/>
+        <h3>Các chương</h3>
+        <ul style="list-style-type: none; text-align: center;">
+            @foreach (var a in ViewBag.listChuong)
+            {
+                <li>
+                    <a href="~/Home/ReadComic?id=@a[0]">@a[9]</a>
+                </li>
+            }
+        </ul>
+
+    </div>
+</section>

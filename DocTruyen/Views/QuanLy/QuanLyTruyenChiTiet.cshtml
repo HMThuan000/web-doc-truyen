@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/QuanLyLayout.cshtml";
+}
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Chi tiết truyện
+        </h1>
+        <form action="~/QuanLy/UpdateComic" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="@ViewBag.list[0][0]" />
+            <table>
+                <tr>
+                    <td>Tên truyện: <input type="text" name="tentruyen" value="@ViewBag.list[0][1]" /></td>
+                </tr>
+                <tr>
+                    <td>Mô tả:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="mota" rows="6" cols="100" style="resize: none">@ViewBag.list[0][2]</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hình minh họa: <input type="file" name="hinhminhhoa" value="@ViewBag.list[0][3]" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        Tác giả:
+                        <select name="matg">
+                            @foreach (var a in ViewBag.listTG)
+                            {
+                                if (a[0] == ViewBag.list[0][6])
+                                {
+                                    <option value="@a[0]" selected>@a[1]</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@a[0]">@a[1]</option>
+
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Danh sách chương: <button>Thêm chương</button>
+                    </td>
+                </tr>
+                <tr>
+                    @if (ViewBag.listChuong.Count > 0)
+                    {
+                        foreach (var c in ViewBag.listChuong)
+                        {
+                            <td>
+                                <i class="fa-solid fa-circle" style="margin-right: 10px;"></i><a href="~/QuanLy/QuanLyChuongTruyen?id=@c[0]">@c[9]</a>
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        <td>Không có chương</td>
+                    }
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Sửa truyện" /></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+    <!--</section>--><!-- /.content -->
+</div><!-- /.content-wrapper -->

@@ -1,0 +1,108 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header-main {
+    height: 500px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 20px;
+    background-image: linear-gradient(to bottom, rgba(25, 26, 28, 0.6), rgba(25, 26, 28, 1)), url(https://shorturl.at/jq578);
+}
+
+.container-header-main {
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding: 14px 20%;
+}
+
+.mylogo {
+    position: relative;
+    text-decoration: none;
+    float: left;
+    color: white;
+    z-index: 1;
+}
+
+.form-search-header {
+    position: relative;
+    margin: 0 0 0 10%;
+    float: left;
+    width: 30rem;
+}
+
+.form-search-header form {
+    border: none;
+    padding: 0;
+}
+
+    .form-search-header input[type="text"] {
+        width: 100%;
+        height: 2em;
+        box-sizing: border-box;
+        border: 1px solid white;
+        font-size: 16px;
+        background-color: rgba(25, 26, 28, 0.6);
+        color: white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+
+.navbar-main {
+    z-index: 1;
+    position: relative;
+    float: right;
+}
+
+    .navbar-main a {
+        text-align: center;
+        text-decoration: none;
+        color: white;
+        margin: 0 0 0 2rem;
+    }
+
+
+/****** TRUYỆN ******/
+.main-page-show-comic{
+    margin: 0 auto 0 auto;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(25, 26, 28, 1);
+}
+
+.main-page-show-container-comic {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+.main-page-show-container-comic-big-title {
+    margin-left: 12rem;
+    font-size: 30px;
+    color: white;
+}
+
+.main-page-show-container-new-comic {
+    margin: auto;
+    width: 80%;
+    background-color: rgba(52, 54, 59, 0.6);
+    padding: 20px;
+    color: white;
+    display: flex; /* Sử dụng display: flex; để hiển thị các phần tử con theo hàng ngang */
+    flex-wrap: wrap; /* Cho phép các phần tử con xuống dòng khi không còn đủ không gian */
+
+    justify-content: space-between; /* Các phần tử con sẽ được căn giữa và có khoảng trống giữa chúng */
+}
+
