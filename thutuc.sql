@@ -199,6 +199,7 @@ END
 
 drop proc addcomicchapter
 
+exec addcomicchapter 
 
 --update chapter
 GO 
@@ -239,11 +240,9 @@ begin
 	order by ngaydangchuong desc
 end;
 
-exec chapterinfo '3'
+exec chapterinfo '1'
 
 drop proc chapterinfo
-
-
 
 --show chapter
 create proc showcomiclistofchapter @id int
@@ -269,10 +268,12 @@ begin
     LEFT JOIN ChuongTruyen ON Truyen.IdTruyen = ChuongTruyen.IdTruyen
 	where Truyen.IdTruyen = @id
     GROUP BY Truyen.IdTruyen, Truyen.TenTruyen, Truyen.PhanMoTa, Truyen.AnhBia, Truyen.SLChuong, Truyen.SoLuotDanhGia, Truyen.SoLuotTheoDoi, Truyen.NgayDangTruyen, Truyen.IdTacGia, TacGia.TenTacGia
-    ORDER BY Truyen.IdTruyen DESC
+    ORDER BY Truyen.IdTruyen DESC;
 end;
 
-exec QuanLyTruyenChiTiet '2'
+exec QuanLyTruyenChiTiet '2' 
+
+select * from Truyen
 
 drop proc QuanLyTruyenChiTiet
 
@@ -408,6 +409,10 @@ drop proc readcomic
 
 ----------------------------------------------------------------------------------
 
+
+
+
+------------------------- KHÔNG CHẠY LỆNH DƯỚI NÀY --------------------------------------
 select *
 from chuongtruyen
 where IdTruyen = 1 and idchuong <=
@@ -415,13 +420,13 @@ where IdTruyen = 1 and idchuong <=
 from ChuongTruyen
 where IdTruyen = 1)
 
-
-------------------------- KHÔNG CHẠY LỆNH DƯỚI NÀY --------------------------------------
 --test
 select * from NguoiDung
 
 --hien chuong truyen trong chi tiet truyen
 select * from Truyen inner join ChuongTruyen on Truyen.IdTruyen = ChuongTruyen.IdTruyen
+
+select * from ChuongTruyen left join Truyen on Truyen.IdTruyen = ChuongTruyen.IdTruyen order by idchuong desc
 
 select * from Truyen inner join TacGia on Truyen.IdTacGia = TacGia.IdTacGia
 
@@ -432,6 +437,16 @@ select * from ChuongTruyen
 select * from theloai;
 
 select * from tacgia
+
+
+	SELECT Truyen.*, TacGia.TenTacGia, COUNT(ChuongTruyen.TenChuong) AS SoLuongChuong
+    FROM Truyen
+    INNER JOIN TacGia ON Truyen.IdTacGia = TacGia.IdTacGia
+    LEFT JOIN ChuongTruyen ON Truyen.IdTruyen = ChuongTruyen.IdTruyen
+	where TacGia.IdTacGia = 2
+    GROUP BY Truyen.IdTruyen, Truyen.TenTruyen, Truyen.PhanMoTa, Truyen.AnhBia, Truyen.SLChuong, Truyen.SoLuotDanhGia, Truyen.SoLuotTheoDoi, Truyen.NgayDangTruyen, Truyen.IdTacGia, TacGia.TenTacGia
+    ORDER BY Truyen.IdTruyen DESC;
+
 
 
 --ds truyen + tacgia + chuongtruyen

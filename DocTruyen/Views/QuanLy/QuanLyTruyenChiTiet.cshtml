@@ -34,17 +34,15 @@
                     <td>
                         Tác giả:
                         <select name="matg">
-                            @foreach (var a in ViewBag.listTG)
+                            @foreach (var a in ViewBag.TacGia)
                             {
-                                if (a[0] == ViewBag.list[0][6])
+                                if (a[0] == ViewBag.list[0][8])
                                 {
                                     <option value="@a[0]" selected>@a[1]</option>
-
                                 }
                                 else
                                 {
                                     <option value="@a[0]">@a[1]</option>
-
                                 }
                             }
                         </select>

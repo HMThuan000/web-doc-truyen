@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,10 +17,10 @@ namespace DocTruyen.Controllers
     public class QuanLyController : Controller
     {
         // GET: QuanLy
-        public ActionResult QuanLyTruyen()
+        public ActionResult QuanLyTruyen(string id)
         {
             DataModel db = DataModel.Instance;
-            ViewBag.list = db.Get("Exec getcomicinfo");
+            ViewBag.list = db.Get("Exec getcomicinfo" + id);
             ViewBag.listTG = db.Get("select * from tacgia");
             return View();
         }
@@ -28,9 +29,8 @@ namespace DocTruyen.Controllers
         {
             DataModel db = DataModel.Instance;
             ViewBag.list = db.Get("exec QuanLyTruyenChiTiet " + id);
-            ViewBag.listTG = db.Get("select * from tacgia");
+            ViewBag.TacGia = db.Get("select * from tacgia");
             ViewBag.listChuong = db.Get("exec showcomiclistofchapter " + id);
-            //ViewBag.listChuong = db.Get("exec listchapter_mainpage " + id);
             ViewBag.addchapter = db.Get("exec chapterinfo " + id);
             return View();
         }
