@@ -262,7 +262,7 @@ drop proc showcomiclistofchapter
 create proc QuanLyTruyenChiTiet @id int
 as
 begin
-	SELECT Truyen.*, TacGia.TenTacGia, COUNT(ChuongTruyen.TenChuong) AS SoLuongChuong
+	SELECT Truyen.*, TacGia.TenTacGia
     FROM Truyen
     INNER JOIN TacGia ON Truyen.IdTacGia = TacGia.IdTacGia
     LEFT JOIN ChuongTruyen ON Truyen.IdTruyen = ChuongTruyen.IdTruyen
