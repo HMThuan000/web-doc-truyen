@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "QuanLyTheLoai";
+    Layout = "~/Views/Shared/QuanLyLayout.cshtml";
+}
+
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Danh sách thể loại
+        </h1>
+        <form action="~/QuanLy/AddGenre" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>Tên thể loại: <input type="text" name="genre" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Thêm thể loại" /></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+
+    <section class="content">
+
+        <!-- Main row -->
+        <div class="row">
+            <div id="content">
+                <table border="1" style="width: 100%;">
+                    <tr style="padding: 8px; background-color: #04AA6D; color: white;">
+                        <th style="padding: 8px;">ID</th>
+                        <th>Thể loại</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var a in ViewBag.listGenre)
+                    {
+                        <tr>
+                            <td>@a[0]</td>
+                            <td>@a[1]</td>
+                            <td>
+                                <a href="~/QuanLy/QuanLyTheLoaiChiTiet?id=@a[0]" class="btn btn-primary">Chi tiết</a>
+                                <a href="~/QuanLy/DeleteGenre?id=@a[0]" class="btn btn-danger" onclick="return confirmDeleteGenre()">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div><!-- /.row (main row) -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

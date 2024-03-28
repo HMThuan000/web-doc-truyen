@@ -47,11 +47,11 @@
         <p>@ViewBag.list[0][2]</p>
         <hr style="width: 50%; margin-top: 30px;"/>
         <h3>Các chương</h3>
-        <ul style="list-style-type: none; text-align: center;">
+        <ul style="list-style-type: circle; text-align: left; display: inline-block; ">
             @foreach (var a in ViewBag.listChuong)
             {
-                <li>
-                    <a href="~/Home/ReadComic?id=@a[0]">@a[9]</a>
+                <li style="font-size: 20px">
+                    <a href="~/Home/ReadComic?id=@a[0]" style="text-decoration: none; color:white">@a[1]</a>
                 </li>
             }
         </ul>

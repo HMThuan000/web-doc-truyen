@@ -1,4 +1,4 @@
-﻿* {
+﻿﻿ * {
     box-sizing: border-box;
 }
 
@@ -41,10 +41,10 @@ body {
     width: 30rem;
 }
 
-.form-search-header form {
-    border: none;
-    padding: 0;
-}
+    .form-search-header form {
+        border: none;
+        padding: 0;
+    }
 
     .form-search-header input[type="text"] {
         width: 100%;
@@ -74,10 +74,11 @@ body {
 
 
 /****** TRUYỆN ******/
-.main-page-show-comic{
+.main-page-show-comic {
     margin: 0 auto 0 auto;
     height: 100%;
     width: 100%;
+    position: absolute;
     background-color: rgba(25, 26, 28, 1);
 }
 
@@ -104,4 +105,3 @@ body {
 
     justify-content: space-between; /* Các phần tử con sẽ được căn giữa và có khoảng trống giữa chúng */
 }
-

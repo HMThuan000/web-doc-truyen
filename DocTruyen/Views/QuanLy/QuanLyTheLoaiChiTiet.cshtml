@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "QuanLyTheLoaiChiTiet";
+    Layout = "~/Views/Shared/QuanLyLayout.cshtml";
+}
+
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Sửa thể loại
+        </h1>
+        <form action="~/QuanLy/UpdateGenre" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="@ViewBag.listGenre[0][0]" />
+            <table>
+                <tr>
+                    <td>Tên chương: <input type="text" name="genre" value="@ViewBag.listGenre[0][1]" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Sửa thể loại" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </section>
+    <!--</section>--><!-- /.content -->
+</div><!-- /.content-wrapper -->

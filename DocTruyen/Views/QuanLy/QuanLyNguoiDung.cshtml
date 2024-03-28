@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "QuanLyNguoiDung";
+    Layout = "~/Views/Shared/QuanLyLayout.cshtml";
+}
+
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Danh sách người dùng
+        </h1>
+    </section>
+
+    <section class="content">
+
+        <!-- Main row -->
+        <div class="row">
+            <div id="content">
+                <table border="1" style="width: 100%;">
+                    <tr style="padding: 8px; background-color: #04AA6D; color: white;">
+                        <th style="padding: 8px;">ID</th>
+                        <th>username</th>
+                        <th>email</th>
+                        <th>Role</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var a in ViewBag.listUser)
+                    {
+                        <tr>
+                            <td>@a[0]</td>
+                            <td>@a[1]</td>
+                            <td>@a[3]</td>
+                            <td>@a[4]</td>
+                            <td>
+                                <a href="#" class="btn btn-primary">Chi tiết</a>
+                                <a href="~/QuanLy/RemoveUser?id=@a[0]" class="btn btn-danger" onclick="return confirmDeleteUser()">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div><!-- /.row (main row) -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

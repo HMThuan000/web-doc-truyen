@@ -1,6 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "QuanLyChuongTruyen";
+﻿@{
     Layout = "~/Views/Shared/QuanLyLayout.cshtml";
 }
 
@@ -25,22 +23,22 @@
                         <th>Tên truyện</th>
                         <th>Ngày cập nhật chương</th>
                         <th></th>
-                </tr>
+                    </tr>
                     @foreach (var a in ViewBag.list)
                     {
-                <tr>
+                        <tr>
                             <td>@a[0]</td>
                             <td>@a[1]</td>
                             <td>@a[7]</td>
                             <td>@a[2]</td>
-                    <td>
+                            <td>
                                 <a href="~/QuanLy/QuanLyChuongTruyenChiTiet?id=@a[0]" class="btn btn-primary">Chi tiết</a>
                                 <a href="~/QuanLy/RemoveChapter?id=@a[0]" class="btn btn-danger" onclick="return confirmDeleteChapter()">Xóa</a>
-                    </td>
-                </tr>
+                            </td>
+                        </tr>
                     }
 
-            </table>
+                </table>
             </div>
         </div><!-- /.row (main row) -->
     </section><!-- /.content -->

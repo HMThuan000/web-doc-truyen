@@ -19,6 +19,7 @@ CREATE TABLE NguoiDung
   PRIMARY KEY (IdUser)
 );
 
+
 CREATE TABLE TacGia
 (
   IdTacGia INT,
@@ -55,7 +56,7 @@ CREATE TABLE ChuongTruyen
   NgayDangChuong smalldatetime NOT NULL,
   NoiDungChuong ntext NOT NULL,
   LuotXemChuong INT NOT NULL,
-  IdTruyen INT NOT NULL,
+  IdTruyen INT,
   PRIMARY KEY (IdChuong),
   FOREIGN KEY (IdTruyen) REFERENCES Truyen(IdTruyen)
 );
@@ -82,6 +83,8 @@ CREATE TABLE Truyen_TheLoai
   FOREIGN KEY (IdTheLoai) REFERENCES TheLoai(IdTheLoai)
 );
 
+
+
 CREATE TABLE LuotThich
 (
   IdLuotThich INT,
@@ -92,6 +95,15 @@ CREATE TABLE LuotThich
   FOREIGN KEY (IdTruyen) REFERENCES Truyen(IdTruyen)
 );
 GO
+
+drop table NguoiDung
+drop table TacGia
+drop table TheLoai
+drop table Truyen
+drop table ChuongTruyen
+drop table BinhLuan
+drop table Truyen_TheLoai
+drop table LuotThich
 
 ---------------------NHAP LIEU---------------------
 
@@ -122,5 +134,17 @@ go
 INSERT INTO Truyen_TheLoai VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 1, 3);
+(3, 1, 3),
+(4, 2, 4)
 go
+
+
+select * from chuongtruyen
+delete chuongtruyen where idchuong = 3 or idchuong = 2
+
+
+select * from truyen
+
+select * from truyen left join ChuongTruyen on Truyen.IdTruyen = ChuongTruyen.IdTruyen
+
+select * from ChuongTruyen left join truyen on Truyen.IdTruyen = ChuongTruyen.IdTruyen

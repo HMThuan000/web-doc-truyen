@@ -112,9 +112,24 @@
                 </form>
                 <!-- /.search form -->
                 <ul class="sidebar-menu">
-                    <li class="active treeview">
-                        <a href="#">
+                    <li>
+                        <a href="~/QuanLy/QuanLyTruyen">
                             <span>Danh sách truyện</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/QuanLy/QuanLyChuongTruyen">
+                            <span>Danh sách chương</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/QuanLy/QuanLyNguoiDung">
+                            <span>Danh sách tài khoản</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/QuanLy/QuanLyTheLoai">
+                            <span>Danh sách thể loại</span>
                         </a>
                     </li>
                 </ul>
@@ -181,6 +196,39 @@
                 return true; // Tiếp tục chuyển hướng đến trang xóa
             } else {
                 alert("Hủy xóa truyện!"); // Hiển thị thông báo hủy
+                return false; // Ngăn chặn chuyển hướng đến trang xóa
+            }
+        }
+
+        function confirmDeleteChapter() {
+            var result = confirm("Bạn có chắc chắn muốn xóa mục này?");
+            if (result) {
+                alert("Chương đã được xóa!"); // Hiển thị thông báo xóa
+                return true; // Tiếp tục chuyển hướng đến trang xóa
+            } else {
+                alert("Hủy xóa Chương!"); // Hiển thị thông báo hủy
+                return false; // Ngăn chặn chuyển hướng đến trang xóa
+            }
+        }
+
+        function confirmDeleteUser() {
+            var result = confirm("Bạn có chắc chắn muốn xóa mục này?");
+            if (result) {
+                alert("User đã được xóa!"); // Hiển thị thông báo xóa
+                return true; // Tiếp tục chuyển hướng đến trang xóa
+            } else {
+                alert("Hủy xóa User!"); // Hiển thị thông báo hủy
+                return false; // Ngăn chặn chuyển hướng đến trang xóa
+            }
+        }
+
+        function confirmDeleteGenre() {
+            var result = confirm("Bạn có chắc chắn muốn xóa mục này?");
+            if (result) {
+                alert("Genre đã được xóa!"); // Hiển thị thông báo xóa
+                return true; // Tiếp tục chuyển hướng đến trang xóa
+            } else {
+                alert("Hủy xóa Genre!"); // Hiển thị thông báo hủy
                 return false; // Ngăn chặn chuyển hướng đến trang xóa
             }
         }

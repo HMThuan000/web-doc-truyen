@@ -1,0 +1,50 @@
+﻿
+@{
+    System.Collections.ArrayList b = ((System.Collections.ArrayList)Session["taikhoan"]);
+    ViewBag.Title = "ProfilePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .section {
+        text-align: left; /* Căn giữa nội dung */
+        padding: 90px 30px;
+        background-color: rgba(25, 26, 28, 1);
+        color: white;
+        z-index: 1;
+    }
+
+    .comic-details {
+        margin-top: -300px; /* Dịch chuyển phần tử lên trên */
+    }
+
+    .background {
+        width: 50%;
+        border: 5px solid white;
+        border-radius: 10px;
+        height: 300px;
+        margin: auto;
+    }
+
+    .background .user-info{
+        padding: 20px 20px;
+    }
+</style>
+
+
+
+<div class="section">
+    <div class="comic-details">
+        <h1 style="text-align:center;">USER PROFILE</h1>
+        <div class="background">
+            <div class="user-info" style="font-size: 20px;">
+                <p>Username: <input type="text" name="text" value="@b[1]"/></p>
+                <p>Email: <input type="text" name="text" value="@b[3]"/></p>
+            </div>
+            <div>
+                <button class="btn btn-primary"><i class="fa-solid fa-lock"></i> Đổi mật khẩu</button>
+            </div>
+        </div>
+    </div>
+</div>

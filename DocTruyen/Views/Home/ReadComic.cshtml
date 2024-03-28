@@ -4,7 +4,7 @@
 
 <style>
     .section {
-        text-align: center; /* Căn giữa nội dung */
+        text-align: left; /* Căn giữa nội dung */
         padding: 90px 30px;
         background-color: rgba(25, 26, 28, 1);
         color: white;
@@ -12,12 +12,57 @@
     }
 
     .comic-details {
-        margin-top: -300px; /* Dịch chuyển phần tử lên trên */
+        margin-top: -400px; /* Dịch chuyển phần tử lên trên */
+        padding: 0 20px 0 20px;
+    }
+
+    .btn {
+        background-color: #4CAF50; /* Màu nền */
+        border: none; /* Không có viền */
+        color: white; /* Màu chữ */
+        padding: 10px 20px; /* Kích thước nút */
+        text-align: center; /* Căn giữa văn bản */
+        text-decoration: none; /* Không gạch chân */
+        display: inline-block;
+        font-size: 16px; /* Kích thước chữ */
+        margin: 4px 2px; /* Khoảng cách giữa các nút */
+        cursor: pointer; /* Con trỏ khi di chuột */
+        border-radius: 10px; /* Bo góc */
     }
 </style>
 
 <div class="section">
     <div class="comic-details">
-    @Html.Raw(@ViewBag.list[0][3])
+        <div>
+            <h1 style="text-align: center;">@ViewBag.list[0][1]</h1>
+        </div>
+        <div style="text-align: center;">
+            <button class="btn" onclick="goToPreviousChapter()">Chương trước</button>
+            <select name="id" class="btn" onchange="location.href = this.value;">
+                @foreach (var a in ViewBag.list)
+                {
+                    <option value="@Url.Action("ReadComic", "Home", new { id = a[0] })">@a[1]</option>
+                }
+            </select>
+            <button class="btn" onclick="goToNextChapter()">Chương sau</button>
+        </div>
+        <div>
+            @Html.Raw(@ViewBag.list[0][3])
+        </div>
+    </div>
 </div>
-</div>
+
+<script>
+    function goToPreviousChapter() {
+        var currentChapterID = '@ViewBag.CurrentChapterID'; // Chuyển giá trị ViewBag sang string
+        window.location.href = '@Url.Action("ChangeChapter", "Home")?currentChapterID=' + currentChapterID + '&isNextChapter=false';
+    }
+
+    function goToNextChapter() {
+        var currentChapterID = '@ViewBag.CurrentChapterID'; // Chuyển giá trị ViewBag sang string
+        window.location.href = '@Url.Action("ChangeChapter", "Home")?currentChapterID=' + currentChapterID + '&isNextChapter=true';
+    }
+</script>
+
+
+

@@ -85,7 +85,7 @@
             </div>
             <nav class="navbar-main">
                 <a href="#">Sắp xếp</a>
-                <a href="#">Thể loại</a>
+                <a href="~/Home/GenrePage">Thể loại</a>
                 @if (Session["taikhoan"] != null)
                 {
                     <div class="dropdown">
@@ -93,6 +93,7 @@
                             Xin chào, @b[1]!<!-- Hiển thị tên người dùng -->
                         </a>
                         <div id="dropdownContent" class="dropdown-content">
+                            <a href="~/Home/ProfilePage"><i class="fa-solid fa-user"></i>Trang cá nhân</a>
                             <a href="#"><i class="fa-solid fa-gear"></i>Cài đặt</a>
                             <a href="~/Home/Logout" onclick="logout()"><i class="fa-solid fa-door-open"></i>Đăng xuất</a>
                         </div>

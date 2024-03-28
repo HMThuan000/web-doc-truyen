@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using DocTruyen.LoginCheck_Strategy;
 using DocTruyen.Models;
+using DocTruyen.SignUp_Proxy;
 
 namespace DocTruyen.Controllers
 {
@@ -28,17 +33,19 @@ namespace DocTruyen.Controllers
         {
             DataModel db = DataModel.Instance;
             ViewBag.list = db.Get("exec findcomicbyid " + id);
-            ViewBag.listChuong = db.Get("exec showchapter " + id);
+            ViewBag.listChuong = db.Get("exec showcomiclistofchapter " + id);
             return View();
         }
 
-        public ActionResult ReadComic(string id)
+
+        public ActionResult ReadComic(int id)
         {
             DataModel db = DataModel.Instance;
-            ViewBag.list = db.Get("exec chapterinfo @id " + id);
-            ViewBag.CurrentChapterID = id;
+            ViewBag.list = db.Get("exec readcomic " + id);
+            Session["CurrentChapterID"] = ViewBag.list[0];
             return View();
         }
+
 
         public ActionResult LoginPage()
         {
@@ -54,11 +61,16 @@ namespace DocTruyen.Controllers
             if (ViewBag.list != null && ViewBag.list.Count > 0)
             {
                 var role = ViewBag.list[0][4];
+                LoginCheckContext loginContext = new LoginCheckContext();
+                Session["taikhoan"] = ViewBag.list[0];
 
-        //    ViewBag.ErrorMessage = "Invalid username or password";
-        //    return RedirectToAction("LoginPage", "Home");
-        //}
-            
+                return loginContext.ExecuteStrategy(role);
+            }
+
+            ViewBag.ErrorMessage = "Invalid username or password";
+            return RedirectToAction("LoginPage", "Home");
+        }
+
 
         public ActionResult Logout()
         {
@@ -74,12 +86,14 @@ namespace DocTruyen.Controllers
             return View();
         }
 
+
         public ActionResult SignUpCheck(string username, string password, string email)
         {
-            DataModel db = DataModel.Instance;
+            IAuthService authService = new AuthServiceProxy();
+
             try
             {
-                db.Get("EXEC signupacc '" + username + "','" + password + "', '" + email + "' ;");
+                authService.SignUp(username, password, email);
                 return RedirectToAction("LogInPage", "Home");
             }
             catch (Exception ex)
@@ -95,8 +109,30 @@ namespace DocTruyen.Controllers
                 {
                     ViewBag.EmailErrorMessage = ex.Message;
                 }
+
+                // Return SignUpPage view in case of exception
                 return View("SignUpPage");
             }
+        }
+
+        public ActionResult GenrePage()
+        {
+            DataModel db = DataModel.Instance;
+            ViewBag.listGenre = db.Get("select * from theloai");
+            return View();
+        }
+
+        public ActionResult ResultGenrePage(string id)
+        {
+            DataModel db = DataModel.Instance;
+            ViewBag.listGenre = db.Get("exec showgenrelistofcomic " + id);
+            ViewBag.list = db.Get("select * from theloai");
+            return View();
+        }
+
+        public ActionResult ProfilePage()
+        {
+            return View();
         }
     }
 }

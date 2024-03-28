@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "AddChapterPage";
+    Layout = "~/Views/Shared/QuanLyLayout.cshtml";
+}
+
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Thêm chương cho @ViewBag.tentruyen[0][1]
+        </h1>
+        <form action="~/QuanLy/AddChapter" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="@ViewBag.tentruyen[0][0]" />
+            <table>
+                <tr>
+                    <td>Tên chương: <input type="text" name="cname" /></td>
+                </tr>
+                <tr>
+                    <td>Nội dung chương:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="read" rows="6" cols="100" style="resize: none; white-space: pre-wrap;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Thêm chương" /></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+    <!--</section>--><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('textarea').each(function() {
+            $(this).val($(this).val().replace(/\n/g, '&#13;&#10;'));
+        });
+    });
+</script>

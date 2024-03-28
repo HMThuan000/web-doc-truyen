@@ -26,7 +26,7 @@
                 <tr>
                     <td>
                         Hình minh họa:
-                        <img src="@ViewBag.list[0][3]" alt="Hình minh họa" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+                        <img src="~/img/@ViewBag.list[0][3]" alt="Hình minh họa" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
                         <input type="file" name="hinhminhhoa" />
                     </td>
                 </tr>
@@ -52,26 +52,26 @@
                 </tr>
                 <tr>
                     <td>
-                            Danh sách chương: <a href="~/QuanLy/AddChapterPage?id=@ViewBag.addchapter[0][0]" class="btn btn-primary">Thêm chương</a>
+                        Danh sách chương: <a href="~/QuanLy/AddChapterPage?id=@ViewBag.addchapter[0][0]" class="btn btn-primary">Thêm chương</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                    @if (ViewBag.listChuong.Count > 0)
-                    {
+                        @if (ViewBag.listChuong.Count > 0)
+                        {
                             <ul>
                                 @foreach (var c in ViewBag.listChuong)
-                        {
+                                {
                                     <li>
-                                        <i class="fa-solid fa-circle" style="margin-right: 10px;"></i><a href="~/QuanLy/QuanLyChuongTruyenChiTiet?id=@c[0]">@c[1]</a>
+                                        <a href="~/QuanLy/QuanLyChuongTruyenChiTiet?id=@c[0]">@c[1]</a>
                                     </li>
-                        }
+                                }
                             </ul>
-                    }
-                    else
-                    {
+                        }
+                        else
+                        {
                             <p>Không có chương</p>
-                    }
+                        }
                     </td>
                 </tr>
                 <tr>

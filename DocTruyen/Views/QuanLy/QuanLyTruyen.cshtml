@@ -48,7 +48,7 @@
                             {
                                 <option value="@a[0]">@a[1]</option>
                             }
-                        </select>  @*<input type="text" name="matg" />*@
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -90,8 +90,8 @@
                             <td>@a[6]</td>
                             <td>@a[7]</td>
                             <td>
-                                <a href="~/QuanLy/QuanLyTruyenChiTiet?id=@a[0]">Chi tiết</a>
-                                <a href="~/QuanLy/RemoveComic?id=@a[0]" onclick="return confirmDelete()">Xóa</a>
+                                <a href="~/QuanLy/QuanLyTruyenChiTiet?id=@a[0]" class="btn btn-primary">Chi tiết</a>
+                                <a href="~/QuanLy/RemoveComic?id=@a[0]" class="btn btn-danger" onclick="return confirmDelete()">Xóa</a>
                             </td>
                         </tr>
                     }
