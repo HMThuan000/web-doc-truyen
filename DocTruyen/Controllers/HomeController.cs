@@ -28,14 +28,15 @@ namespace DocTruyen.Controllers
         {
             DataModel db = DataModel.Instance;
             ViewBag.list = db.Get("exec findcomicbyid " + id);
-            ViewBag.listChuong = db.Get("exec listchapter_mainpage " + id);
+            ViewBag.listChuong = db.Get("exec showchapter " + id);
             return View();
         }
 
-        public ActionResult ReadComic()
+        public ActionResult ReadComic(string id)
         {
             DataModel db = DataModel.Instance;
-            ViewBag.list = db.Get("select * from chuongtruyen");
+            ViewBag.list = db.Get("exec chapterinfo @id " + id);
+            ViewBag.CurrentChapterID = id;
             return View();
         }
 
@@ -54,21 +55,10 @@ namespace DocTruyen.Controllers
             {
                 var role = ViewBag.list[0][4];
 
-                if (role == "Admin")
-                {
-                    Session["taikhoan"] = ViewBag.list[0];
-                    return RedirectToAction("QuanLyTruyen", "QuanLy");
-                }
-                else if (role == "User")
-                {
-                    Session["taikhoan"] = ViewBag.list[0];
-                    return RedirectToAction("Index", "Home");
-                }
-            }
+        //    ViewBag.ErrorMessage = "Invalid username or password";
+        //    return RedirectToAction("LoginPage", "Home");
+        //}
             
-            ViewBag.ErrorMessage = "Invalid username or password";
-            return RedirectToAction("LoginPage", "Home");
-        }
 
         public ActionResult Logout()
         {

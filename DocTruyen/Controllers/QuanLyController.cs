@@ -24,14 +24,30 @@ namespace DocTruyen.Controllers
             DataModel db = DataModel.Instance;
             ViewBag.list = db.Get("exec QuanLyTruyenChiTiet " + id);
             ViewBag.listTG = db.Get("select * from tacgia");
-            ViewBag.listChuong = db.Get("exec listchapter_mainpage " + id);
+            ViewBag.listChuong = db.Get("exec showchapter " + id);
+            //ViewBag.listChuong = db.Get("exec listchapter_mainpage " + id);
+            ViewBag.addchapter = db.Get("exec getcomicinfo " + id);
             return View();
         }
 
         public ActionResult QuanLyChuongTruyen()
         {
             DataModel db = DataModel.Instance;
-            ViewBag.list = db.Get("select * from chuongtruyen");
+            ViewBag.list = db.Get("select * from ChuongTruyen left join Truyen on Truyen.IdTruyen = ChuongTruyen.IdTruyen order by ngaydangchuong desc");
+            return View();
+        }
+
+        public ActionResult QuanLyChuongTruyenChiTiet(string id)
+        {
+            DataModel db = DataModel.Instance;
+            ViewBag.list = db.Get("exec chapterinfo " + id);
+            return View();
+        }
+
+        public ActionResult AddChapterPage(string id)
+        {
+            DataModel db = DataModel.Instance;
+            ViewBag.tentruyen = db.Get("exec findcomicbyid " +id);
             return View();
         }
 

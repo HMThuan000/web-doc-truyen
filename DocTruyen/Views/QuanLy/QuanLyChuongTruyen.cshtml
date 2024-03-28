@@ -9,29 +9,39 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Chi tiết chương truyện
+            Danh sách chương
         </h1>
-        <form action="~/QuanLy/UpdateComic" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="@ViewBag.list[0][0]" />
-            <table>
-                <tr>
-                    <td>Tên chương: <input type="text" name="tentruyen" value="@ViewBag.list[0][1]" /></td>
-                </tr>
-                <tr>
-                    <td>Nội dung chương:</td>
-                </tr>
-                <tr>
-                    <td>
-                        <textarea name="mota" rows="6" cols="100" style="resize: none">@ViewBag.list[0][3]</textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Thêm chương"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
     </section>
-    <!--</section>--><!-- /.content -->
+
+    <section class="content">
+
+        <!-- Main row -->
+        <div class="row">
+            <div id="content">
+                <table border="1" style="width: 100%;">
+                    <tr style="padding: 8px; background-color: #04AA6D; color: white;">
+                        <th style="padding: 8px;">ID</th>
+                        <th>Tên chương</th>
+                        <th>Tên truyện</th>
+                        <th>Ngày cập nhật chương</th>
+                        <th></th>
+                </tr>
+                    @foreach (var a in ViewBag.list)
+                    {
+                <tr>
+                            <td>@a[0]</td>
+                            <td>@a[1]</td>
+                            <td>@a[7]</td>
+                            <td>@a[2]</td>
+                    <td>
+                                <a href="~/QuanLy/QuanLyChuongTruyenChiTiet?id=@a[0]" class="btn btn-primary">Chi tiết</a>
+                                <a href="~/QuanLy/RemoveChapter?id=@a[0]" class="btn btn-danger" onclick="return confirmDeleteChapter()">Xóa</a>
+                    </td>
+                </tr>
+                    }
+
+            </table>
+            </div>
+        </div><!-- /.row (main row) -->
+    </section><!-- /.content -->
 </div><!-- /.content-wrapper -->

@@ -2,6 +2,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
+<style>
+    .section {
+        text-align: center; /* Căn giữa nội dung */
+        padding: 90px 30px;
+        background-color: rgba(25, 26, 28, 1);
+        color: white;
+        z-index: 1;
+    }
+
+    .comic-details {
+        margin-top: -300px; /* Dịch chuyển phần tử lên trên */
+    }
+</style>
+
+<div class="section">
+    <div class="comic-details">
     @Html.Raw(@ViewBag.list[0][3])
+</div>
 </div>
